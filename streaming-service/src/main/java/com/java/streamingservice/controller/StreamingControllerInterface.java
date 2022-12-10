@@ -37,9 +37,6 @@ public interface StreamingControllerInterface {
 	          array = @ArraySchema(schema = @Schema(implementation = Streaming.class))) })})
 	  public ResponseEntity<List<Streaming>> findAll();
 
-	  // @GetMapping
-	  // public ResponseEntity<> showAllServices();
-
 	  @GetMapping("/{id}")
 	  @ApiResponses(value = {
 		      @ApiResponse(responseCode = "200", description = "Show a streaming by id",
@@ -54,13 +51,24 @@ public interface StreamingControllerInterface {
 		      @ApiResponse(responseCode = "200", description = "Update a streaming with a movie",
 		          content = { @Content(mediaType = "application/json", 
 		    	  schema = @Schema(implementation = Streaming.class)) }),
-		      @ApiResponse(responseCode = "404", description = "Streaming not found",
+		      @ApiResponse(responseCode = "404", description = "Id not found",
 		          content = @Content)})
 	  public ResponseEntity<Streaming> updateWithMovie(
           @PathVariable String id,
           @PathVariable String idMovie
       );
 
+	  @PatchMapping("/{id}/with/{idSerie}")
+	  @ApiResponses(value = {
+		      @ApiResponse(responseCode = "200", description = "Update a streaming with a serie",
+		          content = { @Content(mediaType = "application/json", 
+		    	  schema = @Schema(implementation = Streaming.class)) }),
+		      @ApiResponse(responseCode = "404", description = "Id not found",
+		          content = @Content)})
+	  public ResponseEntity<Streaming> updateWithSerie(
+          @PathVariable String id,
+          @PathVariable String idSerie
+      );
 
 	  @DeleteMapping("/{id}")
 	  @ApiResponses(value = {

@@ -11,8 +11,10 @@ import org.springframework.stereotype.Service;
 import com.java.streamingservice.dto.StreamingDto;
 import com.java.streamingservice.model.Streaming;
 import com.java.streamingservice.proxy.MoviesProxy;
+import com.java.streamingservice.proxy.SeriesProxy;
 import com.java.streamingservice.repository.StreamingRepository;
 import com.java.streamingservice.response.Movies;
+import com.java.streamingservice.response.Series;
 
 @Service
 @Component
@@ -23,6 +25,9 @@ public class StreamingService {
 
     @Autowired
     private MoviesProxy moviesProxy;
+
+    @Autowired
+    private SeriesProxy seriesProxy;
 
 	public Streaming create(StreamingDto streamingDto) {
 		List<HashMap<String, String>> emptyList = new ArrayList<HashMap<String, String>>();
@@ -55,6 +60,20 @@ public class StreamingService {
 		streamingMovie.setAudiovisualProduct(allAudioVisualProducts);
 		streamingRepository.save(streamingMovie);
 		return streamingMovie;
+	}
+
+	public Streaming updateWithSeries(String idStreaming, String idSerie) {
+		Streaming streamingSerie = streamingRepository.findById(idStreaming).get();
+		Series foundSerie = seriesProxy.getSerie(idSerie);
+		HashMap<String, String> serieInformation = new HashMap<String, String>();
+		serieInformation.put("id", foundSerie.getId());
+		serieInformation.put("title", foundSerie.getTitle());
+		serieInformation.put("image", foundSerie.getImage());
+		List<HashMap<String, String>> allAudioVisualProducts = streamingSerie.getAudiovisualProduct();
+		allAudioVisualProducts.add(serieInformation);
+		streamingSerie.setAudiovisualProduct(allAudioVisualProducts);
+		streamingRepository.save(streamingSerie);
+		return streamingSerie;
 	}
 
 	public void delete(String id) {

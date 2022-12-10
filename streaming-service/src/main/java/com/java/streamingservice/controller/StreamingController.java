@@ -50,9 +50,18 @@ public class StreamingController implements StreamingControllerInterface {
 	}
 
 	@Override
+	@Operation(summary = "Add a movie in streaming data")
 	public ResponseEntity<Streaming> updateWithMovie(String id, String idMovie) {
 		return ResponseEntity
             .status(HttpStatus.OK)
             .body(streamingService.updateWithMovies(id, idMovie));
+	}
+
+	@Override
+	@Operation(summary = "Add a serie in streaming data")
+	public ResponseEntity<Streaming> updateWithSerie(String id, String idSerie) {
+		return ResponseEntity
+	        .status(HttpStatus.OK)
+	        .body(streamingService.updateWithMovies(id, idSerie));
 	}
 }
