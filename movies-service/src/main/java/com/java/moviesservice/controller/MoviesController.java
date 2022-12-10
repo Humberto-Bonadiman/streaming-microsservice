@@ -21,7 +21,7 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 public class MoviesController implements MoviesControllerInterface {
 
 	@Autowired
-	MoviesService moviesService;
+	private MoviesService moviesService;
 
 	@Override
 	@Operation(summary = "Create movie data")

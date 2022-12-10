@@ -15,7 +15,7 @@ import com.java.moviesservice.repository.MoviesRepository;
 public class MoviesService implements MoviesInterface {
 
 	@Autowired
-	MoviesRepository moviesRepository;
+	private MoviesRepository moviesRepository;
 	
 	@Override
 	public Movies create(MoviesDto moviesDto) {
