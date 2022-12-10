@@ -1,0 +1,36 @@
+server:
+  port: 8765
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka
+spring:
+  application:
+    name: api-gateway
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+      routes:
+      - id: movies
+        uri: lb://movies
+        predicates:
+        - Path=/movies-service/**
+      - id: series
+        uri: lb://series
+        predicates:
+        - Path=/series-service/**
+      - id: streaming
+        uri: lb://streaming
+        predicates:
+        - Path=/streaming-service/**
+      - id: api-gateway
+        uri: lb://api-gateway
+        predicates:
+        - Path=/v3/api-docs/**
+        filters:
+        - RewritePath=/v3/api-docs/(?<path>.*), /$\{path}/v3/api-docs
+  sleuth:
+    sampler:
+      probability: 1.0

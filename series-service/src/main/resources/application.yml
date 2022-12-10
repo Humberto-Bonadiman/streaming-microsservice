@@ -8,3 +8,7 @@ spring:
       host: localhost
       port: 27017
       database: series
+springdoc:
+  show-actuator: true
+  api-docs:
+    path: series/v3/api-docs
