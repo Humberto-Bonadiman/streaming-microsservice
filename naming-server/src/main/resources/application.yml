@@ -1,0 +1,11 @@
+server:
+  port: 8761
+spring:
+  application:
+    name: naming-server
+eureka:
+  client:
+    # Previne que o Eureka se auto-registre
+    # Em produção deve-se retirar essa configuração
+    register-with-eureka: false
+    fetch-registry: false

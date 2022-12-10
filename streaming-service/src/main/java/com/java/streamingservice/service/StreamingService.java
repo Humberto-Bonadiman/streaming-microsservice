@@ -31,6 +31,7 @@ public class StreamingService {
 		    streamingDto.getTypes(),
 		    emptyList
 		);
+		streamingRepository.save(streaming);
 		return streaming;
 	}
 
@@ -52,6 +53,7 @@ public class StreamingService {
 		List<HashMap<String, String>> allAudioVisualProducts = streamingMovie.getAudiovisualProduct();
 		allAudioVisualProducts.add(movieInformation);
 		streamingMovie.setAudiovisualProduct(allAudioVisualProducts);
+		streamingRepository.save(streamingMovie);
 		return streamingMovie;
 	}
 

@@ -1,5 +1,9 @@
 server:
   port: 8081
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka
 spring:
   application:
     name: movies-service
@@ -8,3 +12,6 @@ spring:
       host: localhost
       port: 27017
       database: movies
+  sleuth:
+    sampler:
+      probability: 1.0

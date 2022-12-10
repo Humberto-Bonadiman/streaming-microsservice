@@ -1,6 +1,5 @@
 package com.java.streamingservice.model;
 
-import java.io.Serializable;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Objects;
@@ -9,9 +8,7 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document("streaming")
-public class Streaming implements Serializable {
-
-	private static final long serialVersionUID = 1L;
+public class Streaming {
 
 	@Id
 	private String id;

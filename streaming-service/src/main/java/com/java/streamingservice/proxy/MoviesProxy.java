@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 
 import com.java.streamingservice.response.Movies;
 
-@FeignClient(name = "movie-service")
+@FeignClient(name = "movies")
 public interface MoviesProxy {
 
 	@GetMapping(value = "/movies/{id}")
