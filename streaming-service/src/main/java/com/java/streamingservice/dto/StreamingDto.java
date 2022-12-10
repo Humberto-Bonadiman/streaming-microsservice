@@ -1,5 +1,6 @@
 package com.java.streamingservice.dto;
 
+import java.util.HashMap;
 import java.util.List;
 
 public class StreamingDto {
@@ -8,7 +9,7 @@ public class StreamingDto {
 
 	private List<String> types;
 
-	private List<String> audiovisualProduct;
+	private List<HashMap<String, String>> audiovisualProduct;
 
 	public String getCategory() {
 		return category;
@@ -26,11 +27,11 @@ public class StreamingDto {
 		this.types = types;
 	}
 
-	public List<String> getAudiovisualProduct() {
+	public List<HashMap<String, String>> getAudiovisualProduct() {
 		return audiovisualProduct;
 	}
 
-	public void setAudiovisualProduct(List<String> audiovisualProduct) {
+	public void setAudiovisualProduct(List<HashMap<String, String>> audiovisualProduct) {
 		this.audiovisualProduct = audiovisualProduct;
 	}
 }

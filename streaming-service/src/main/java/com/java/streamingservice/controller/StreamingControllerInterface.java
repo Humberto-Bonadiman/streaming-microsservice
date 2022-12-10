@@ -11,6 +11,7 @@ import java.util.List;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 // import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -36,6 +37,9 @@ public interface StreamingControllerInterface {
 	          array = @ArraySchema(schema = @Schema(implementation = Streaming.class))) })})
 	  public ResponseEntity<List<Streaming>> findAll();
 
+	  // @GetMapping
+	  // public ResponseEntity<> showAllServices();
+
 	  @GetMapping("/{id}")
 	  @ApiResponses(value = {
 		      @ApiResponse(responseCode = "200", description = "Show a streaming by id",
@@ -45,16 +49,18 @@ public interface StreamingControllerInterface {
 		          content = @Content)})
       public ResponseEntity<Streaming> findById(@PathVariable String id);
 
-	  /**
-	   * 	  @PatchMapping("/{id}")
+	  @PatchMapping("/{id}/with/{idMovie}")
 	  @ApiResponses(value = {
-		      @ApiResponse(responseCode = "200", description = "Update a streaming",
+		      @ApiResponse(responseCode = "200", description = "Update a streaming with a movie",
 		          content = { @Content(mediaType = "application/json", 
 		    	  schema = @Schema(implementation = Streaming.class)) }),
 		      @ApiResponse(responseCode = "404", description = "Streaming not found",
 		          content = @Content)})
-	  public ResponseEntity<Streaming> update(@PathVariable String id, @RequestBody StreamingDto streamingDto);
-	   */
+	  public ResponseEntity<Streaming> updateWithMovie(
+          @PathVariable String id,
+          @PathVariable String idMovie
+      );
+
 
 	  @DeleteMapping("/{id}")
 	  @ApiResponses(value = {

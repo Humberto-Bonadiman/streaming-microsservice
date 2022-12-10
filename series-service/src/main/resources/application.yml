@@ -1,1 +1,10 @@
-
+server:
+  port: 8180
+spring:
+  application:
+    name: series-service
+  data:
+    mongodb:
+      host: localhost
+      port: 27017
+      database: series

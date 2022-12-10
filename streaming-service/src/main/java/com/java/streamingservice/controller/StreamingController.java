@@ -43,16 +43,16 @@ public class StreamingController implements StreamingControllerInterface {
 		return ResponseEntity.status(HttpStatus.OK).body(streamingService.findById(id));
 	}
 
-	/**
-	 * 	@Override
-	public ResponseEntity<Streaming> update(String id, StreamingDto streamingDto) {
-		return ResponseEntity.status(HttpStatus.OK).body(streamingService)
-	}
-	 */
-
 	@Override
 	@Operation(summary = "Delete a streaming data by id")
 	public ResponseEntity<Object> deleteById(String id) {
 		return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+	}
+
+	@Override
+	public ResponseEntity<Streaming> updateWithMovie(String id, String idMovie) {
+		return ResponseEntity
+            .status(HttpStatus.OK)
+            .body(streamingService.updateWithMovies(id, idMovie));
 	}
 }

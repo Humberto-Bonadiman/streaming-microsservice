@@ -1,24 +1,34 @@
 package com.java.streamingservice.model;
 
 import java.io.Serializable;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Objects;
 
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
+
+@Document("streaming")
 public class Streaming implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
+	@Id
 	private String id;
 
 	private String category;
 
 	private List<String> types;
 
-	private List<String> audiovisualProduct;
+	private List<HashMap<String, String>> audiovisualProduct;
 
 	public Streaming() {}
 
-	public Streaming(String category, List<String> types, List<String> audiovisualProduct) {
+	public Streaming(
+	    String category,
+	    List<String> types,
+	    List<HashMap<String, String>> audiovisualProduct
+	) {
 		this.category = category;
 		this.types = types;
 		this.audiovisualProduct = audiovisualProduct;
@@ -48,11 +58,11 @@ public class Streaming implements Serializable {
 		this.types = types;
 	}
 
-	public List<String> getAudiovisualProduct() {
+	public List<HashMap<String, String>> getAudiovisualProduct() {
 		return audiovisualProduct;
 	}
 
-	public void setAudiovisualProduct(List<String> audiovisualProduct) {
+	public void setAudiovisualProduct(List<HashMap<String, String>> audiovisualProduct) {
 		this.audiovisualProduct = audiovisualProduct;
 	}
 
@@ -76,7 +86,7 @@ public class Streaming implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Streaming [id=" + id + ", category=" + category + ", types=" + types + ", audiovisualProduct="
+		return "Streaming [id=" + id + ",\ncategory=" + category + ",\ntypes=" + types + ",\naudiovisualProduct="
 				+ audiovisualProduct + "]";
 	}
 }
