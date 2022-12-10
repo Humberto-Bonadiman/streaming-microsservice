@@ -13,16 +13,16 @@ spring:
         locator:
           enabled: true
       routes:
-      - id: movies
-        uri: lb://movies
+      - id: movies-service
+        uri: lb://movies-service
         predicates:
         - Path=/movies-service/**
       - id: series
-        uri: lb://series
+        uri: lb://series-service
         predicates:
         - Path=/series-service/**
-      - id: streaming
-        uri: lb://streaming
+      - id: streaming-service
+        uri: lb://streaming-service
         predicates:
         - Path=/streaming-service/**
       - id: api-gateway

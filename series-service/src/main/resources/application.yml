@@ -11,4 +11,4 @@ spring:
 springdoc:
   show-actuator: true
   api-docs:
-    path: series/v3/api-docs
+    path: series-service/v3/api-docs

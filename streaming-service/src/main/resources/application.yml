@@ -18,4 +18,4 @@ spring:
 springdoc:
   show-actuator: true
   api-docs:
-    path: streaming/v3/api-docs
+    path: streaming-service/v3/api-docs

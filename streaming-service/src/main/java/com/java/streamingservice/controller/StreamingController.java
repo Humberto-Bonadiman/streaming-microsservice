@@ -19,7 +19,7 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 
 @CrossOrigin
 @RestController
-@Tag(name = "Movies endpoint")
+@Tag(name = "Streaming endpoint")
 public class StreamingController implements StreamingControllerInterface {
 
 	@Autowired

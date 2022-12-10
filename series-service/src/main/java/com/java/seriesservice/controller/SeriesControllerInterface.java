@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.java.seriesservice.dto.SeriesDto;
 import com.java.seriesservice.model.Series;
 
-@RequestMapping("/series")
+@RequestMapping("/series-service")
 public interface SeriesControllerInterface {
 
 	  @PostMapping
