@@ -50,7 +50,8 @@ public class SeriesService implements SeriesInterface {
 	    serie.setEpisodesPerSeason(seriesDto.getEpisodesPerSeason());
 	    serie.setImage(seriesDto.getImage());
 	    serie.setCategories(seriesDto.getCategories());
-		return null;
+	    seriesRepository.save(serie);
+		return serie;
 	}
 
 	@Override

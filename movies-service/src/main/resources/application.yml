@@ -9,9 +9,10 @@ spring:
     name: movies-service
   data:
     mongodb:
-      host: localhost
-      port: 27017
-      database: movies
+      primary:
+        host: localhost
+        port: 27017
+        database: movies
   sleuth:
     sampler:
       probability: 1.0

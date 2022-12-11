@@ -9,9 +9,10 @@ spring:
     name: streaming-service
   data:
     mongodb:
-      host: localhost
-      port: 27017
-      database: streaming
+      tertiary:
+        host: localhost
+        port: 27017
+        database: streaming
   sleuth:
     sampler:
       probability: 1.0

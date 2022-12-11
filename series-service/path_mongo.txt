@@ -1,0 +1,1 @@
+mongod --dbpath -d /home/humberto/pasta_humberto/Java/streaming-microsservice/series-service/data --port 27018

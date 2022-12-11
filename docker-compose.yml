@@ -1,0 +1,170 @@
+version: '3.9'
+services:
+  zipkin-server:
+    image: openzipkin/zipkin:latest
+    ports:
+      - 9411:9411
+    restart: always
+    depends_on:
+      - rabbit-mq
+    environment:
+      RABBIT_URI: amqp://guest:guest@rabbit-mq:5672
+    networks:
+      - streaming-network
+
+  rabbit-mq:
+    image: rabbitmq:3.11.4-management
+    ports:
+      - 5672:5672
+      - 15672:15672
+    networks:
+      - streaming-network
+
+  movies-db:
+    image: mongo:6.0.3
+    restart: always
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=root
+      - MONGO_INITDB_ROOT_PASSWORD=password
+      - MONGO_INITDB_DATABASE=movies
+    ports:
+      - 27017:27017
+    expose:
+      - 27017
+    networks:
+      - streaming-network
+
+  series-db:
+    image: mongo:6.0.3
+    restart: always
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=root
+      - MONGO_INITDB_ROOT_PASSWORD=password
+      - MONGO_INITDB_DATABASE=series
+    ports:
+      - 27018:27018
+    expose:
+      - 27018
+    networks:
+      - streaming-network
+
+  streaming-db:
+    image: mongo:6.0.3
+    restart: always
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=root
+      - MONGO_INITDB_ROOT_PASSWORD=password
+      - MONGO_INITDB_DATABASE=streaming
+    ports:
+      - 27019:27019
+    expose:
+      - 27019
+    networks:
+      - streaming-network
+
+  naming-server:
+    image: humbertobonadiman/naming-server:0.0.1-SNAPSHOT
+    ports:
+      - 8761:8761
+    networks:
+      - streaming-network
+
+  api-gateway:
+    image: humbertobonadiman/api-gateway:0.0.1-SNAPSHOT
+    ports:
+      - 8765:8765
+    depends_on:
+      - naming-server
+      - rabbit-mq
+    environment:
+      EUREKA.CLIENT.SERVICEURL.DEFAULTZONE: http://naming-server:8761/eureka
+    networks:
+      - streaming-network
+
+  movies-service:
+    restart: always
+    build:
+      context: .
+      dockerfile: movies-service/Dockerfile
+    environment:
+      TZ: America/Sao_Paulo
+      EUREKA.CLIENT.SERVICEURL.DEFAULTZONE: http://naming-server:8761/eureka
+      SPRING.ZIPKIN.BASEURL: http://zipkin-server:9411/
+      RABBIT_URI: amqp://guest:guest@rabbit-mq:5672
+      SPRING_RABBITMQ_HOST: rabbit-mq
+      SPRING_ZIPKIN_SENDER_TYPE: rabbit
+      SPRING.APPLICATION.NAME: movies-service
+      SPRING.DATA.MONGODB.AUTHENTICATION.DATABASE: admin
+      SPRING.DATA.MONGODB.USERNAME: root
+      SPRING.DATA.MONGODB.PASSWORD: password
+      SPRING.DATA.URL.MONGODB.HOST: mongo
+      SPRING.DATA.URL.MONGODB.PORT: 27017
+      SPRING.DATA.URL.MONGODB.DATABASE: movies
+    ports:
+      - 8081:8081
+    depends_on:
+      - naming-server
+      - movies-db
+      - rabbit-mq
+    networks:
+      - streaming-network
+
+  series-service:
+    restart: always
+    build:
+      context: .
+      dockerfile: series-service/Dockerfile
+    environment:
+      TZ: America/Sao_Paulo
+      EUREKA.CLIENT.SERVICEURL.DEFAULTZONE: http://naming-server:8761/eureka
+      SPRING.ZIPKIN.BASEURL: http://zipkin-server:9411/
+      RABBIT_URI: amqp://guest:guest@rabbit-mq:5672
+      SPRING_RABBITMQ_HOST: rabbit-mq
+      SPRING_ZIPKIN_SENDER_TYPE: rabbit
+      SPRING.APPLICATION.NAME: series-service
+      SPRING.DATA.MONGODB.AUTHENTICATION.DATABASE: admin
+      SPRING.DATA.MONGODB.USERNAME: root
+      SPRING.DATA.MONGODB.PASSWORD: password
+      SPRING.DATA.URL.MONGODB.HOST: mongo
+      SPRING.DATA.URL.MONGODB.PORT: 27017
+      SPRING.DATA.URL.MONGODB.DATABASE: series
+    ports:
+      - 8180:8180
+    depends_on:
+      - naming-server
+      - series-db
+      - rabbit-mq
+    networks:
+      - streaming-network
+
+  streaming-service:
+    restart: always
+    build:
+      context: .
+      dockerfile: streaming-service/Dockerfile
+    environment:
+      TZ: America/Sao_Paulo
+      EUREKA.CLIENT.SERVICEURL.DEFAULTZONE: http://naming-server:8761/eureka
+      SPRING.ZIPKIN.BASEURL: http://zipkin-server:9411/
+      RABBIT_URI: amqp://guest:guest@rabbit-mq:5672
+      SPRING_RABBITMQ_HOST: rabbit-mq
+      SPRING_ZIPKIN_SENDER_TYPE: rabbit
+      SPRING.APPLICATION.NAME: streaming-service
+      SPRING.DATA.MONGODB.AUTHENTICATION.DATABASE: admin
+      SPRING.DATA.MONGODB.USERNAME: root
+      SPRING.DATA.MONGODB.PASSWORD: password
+      SPRING.DATA.URL.MONGODB.HOST: mongo
+      SPRING.DATA.URL.MONGODB.PORT: 27017
+      SPRING.DATA.URL.MONGODB.DATABASE: streaming
+    ports:
+      - 8000:8000
+    depends_on:
+      - naming-server
+      - streaming-db
+      - rabbit-mq
+    networks:
+      - streaming-network
+
+networks:
+  streaming-network:
+    driver: bridge

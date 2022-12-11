@@ -1,0 +1,17 @@
+{"properties": [
+  {
+    "name": "spring.data.mongodb.primary.host",
+    "type": "java.lang.String",
+    "description": "A description for 'spring.data.mongodb.primary.host'"
+  },
+  {
+    "name": "spring.data.mongodb.primary.port",
+    "type": "java.lang.String",
+    "description": "A description for 'spring.data.mongodb.primary.port'"
+  },
+  {
+    "name": "spring.data.mongodb.primary.database",
+    "type": "java.lang.String",
+    "description": "A description for 'spring.data.mongodb.primary.database'"
+  }
+]}

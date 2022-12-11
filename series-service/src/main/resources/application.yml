@@ -1,14 +1,22 @@
 server:
   port: 8180
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka
 spring:
   application:
     name: series-service
   data:
     mongodb:
-      host: localhost
-      port: 27017
-      database: series
+      secondary:
+        host: localhost
+        port: 27017
+        database: series
+  sleuth:
+    sampler:
+      probability: 1.0
 springdoc:
   show-actuator: true
   api-docs:
-    path: series-service/v3/api-docs
+    path: movies-service/v3/api-docs

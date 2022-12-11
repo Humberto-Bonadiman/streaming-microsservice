@@ -1,0 +1,17 @@
+{"properties": [
+  {
+    "name": "spring.data.mongodb.tertiary.host",
+    "type": "java.lang.String",
+    "description": "A description for 'spring.data.mongodb.tertiary.host'"
+  },
+  {
+    "name": "spring.data.mongodb.tertiary.port",
+    "type": "java.lang.String",
+    "description": "A description for 'spring.data.mongodb.tertiary.port'"
+  },
+  {
+    "name": "spring.data.mongodb.tertiary.database",
+    "type": "java.lang.String",
+    "description": "A description for 'spring.data.mongodb.tertiary.database'"
+  }
+]}
