@@ -1,9 +1,8 @@
 package com.java.moviesservice.repository;
 
-import org.springframework.data.mongodb.repository.MongoRepository;
-
 import com.java.moviesservice.model.Movies;
+import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface MoviesRepository extends MongoRepository<Movies, String> {
+public interface MoviesRepository extends JpaRepository<Movies, Integer> {
 
 }

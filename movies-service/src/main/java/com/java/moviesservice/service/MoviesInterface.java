@@ -12,9 +12,9 @@ public interface MoviesInterface {
 
 	public List<Movies> listAll();
 
-	public Movies findById(String id);
+	public Movies findById(Integer id);
 
-	public Movies update(String id, MoviesDto moviesDto);
+	public Movies update(Integer id, MoviesDto moviesDto);
 
-	public void delete(String id);
+	public void delete(Integer id);
 }

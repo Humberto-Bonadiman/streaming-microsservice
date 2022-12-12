@@ -36,12 +36,12 @@ public class MoviesService implements MoviesInterface {
 	}
 
 	@Override
-	public Movies findById(String id) {
+	public Movies findById(Integer id) {
 		return moviesRepository.findById(id).get();
 	}
 
 	@Override
-	public Movies update(String id, MoviesDto moviesDto) {
+	public Movies update(Integer id, MoviesDto moviesDto) {
 		Movies movie = moviesRepository.findById(id).get();
 		movie.setTitle(moviesDto.getTitle());
 		movie.setSynopsis(moviesDto.getSynopsis());
@@ -54,8 +54,8 @@ public class MoviesService implements MoviesInterface {
 	}
 
 	@Override
-	public void delete(String id) {
-		Movies movie = moviesRepository.findById(id).get();
-		moviesRepository.deleteById(movie.getId());
+	public void delete(Integer id) {
+		// Movies movie = moviesRepository.findById(id).get();
+		moviesRepository.deleteById(id);
 	}
 }

@@ -46,7 +46,7 @@ public interface MoviesControllerInterface {
 		    	  schema = @Schema(implementation = Movies.class)) }),
 		      @ApiResponse(responseCode = "404", description = "Movie not found",
 		          content = @Content)})
-      public ResponseEntity<Movies> findById(@PathVariable String id);
+      public ResponseEntity<Movies> findById(@PathVariable Integer id);
 
 	  @PatchMapping("/{id}")
 	  @ApiResponses(value = {
@@ -55,12 +55,12 @@ public interface MoviesControllerInterface {
 		    	  schema = @Schema(implementation = Movies.class)) }),
 		      @ApiResponse(responseCode = "404", description = "Movie not found",
 		          content = @Content)})
-	  public ResponseEntity<Movies> update(@PathVariable String id, @RequestBody MoviesDto moviesDto);
+	  public ResponseEntity<Movies> update(@PathVariable Integer id, @RequestBody MoviesDto moviesDto);
 
 	  @DeleteMapping("/{id}")
 	  @ApiResponses(value = {
 	      @ApiResponse(responseCode = "204", content = @Content),
 	      @ApiResponse(responseCode = "404", description = "Movie not found",
 	          content = @Content)})
-	  public ResponseEntity<Object> deleteById(@PathVariable String id);
+	  public ResponseEntity<Object> deleteById(@PathVariable Integer id);
 }

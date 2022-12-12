@@ -37,19 +37,19 @@ public class MoviesController implements MoviesControllerInterface {
 
 	@Override
 	@Operation(summary = "Show a movie by id")
-	public ResponseEntity<Movies> findById(String id) {
+	public ResponseEntity<Movies> findById(Integer id) {
 		return ResponseEntity.status(HttpStatus.OK).body(moviesService.findById(id));
 	}
 
 	@Override
 	@Operation(summary = "Update a movie by id")
-	public ResponseEntity<Movies> update(String id, MoviesDto moviesDto) {
+	public ResponseEntity<Movies> update(Integer id, MoviesDto moviesDto) {
 		return ResponseEntity.status(HttpStatus.OK).body(moviesService.update(id, moviesDto));
 	}
 
 	@Override
 	@Operation(summary = "Delete a movie by id")
-	public ResponseEntity<Object> deleteById(String id) {
+	public ResponseEntity<Object> deleteById(Integer id) {
 		return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
 	}
 

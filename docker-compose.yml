@@ -20,45 +20,16 @@ services:
     networks:
       - streaming-network
 
-  movies-db:
-    image: mongo:6.0.3
-    restart: always
-    environment:
-      - MONGO_INITDB_ROOT_USERNAME=root
-      - MONGO_INITDB_ROOT_PASSWORD=password
-      - MONGO_INITDB_DATABASE=movies
-    ports:
-      - 27017:27017
-    expose:
-      - 27017
-    networks:
-      - streaming-network
-
-  series-db:
-    image: mongo:6.0.3
-    restart: always
-    environment:
-      - MONGO_INITDB_ROOT_USERNAME=root
-      - MONGO_INITDB_ROOT_PASSWORD=password
-      - MONGO_INITDB_DATABASE=series
-    ports:
-      - 27018:27018
-    expose:
-      - 27018
-    networks:
-      - streaming-network
-
   streaming-db:
     image: mongo:6.0.3
     restart: always
     environment:
       - MONGO_INITDB_ROOT_USERNAME=root
       - MONGO_INITDB_ROOT_PASSWORD=password
-      - MONGO_INITDB_DATABASE=streaming
     ports:
-      - 27019:27019
+      - 27017:27017
     expose:
-      - 27019
+      - 27017
     networks:
       - streaming-network
 
@@ -94,17 +65,17 @@ services:
       SPRING_RABBITMQ_HOST: rabbit-mq
       SPRING_ZIPKIN_SENDER_TYPE: rabbit
       SPRING.APPLICATION.NAME: movies-service
-      SPRING.DATA.MONGODB.AUTHENTICATION.DATABASE: admin
-      SPRING.DATA.MONGODB.USERNAME: root
-      SPRING.DATA.MONGODB.PASSWORD: password
-      SPRING.DATA.URL.MONGODB.HOST: mongo
-      SPRING.DATA.URL.MONGODB.PORT: 27017
-      SPRING.DATA.URL.MONGODB.DATABASE: movies
+      SPRING.DATA.MONGODB.PRIMARY.AUTHENTICATION.DATABASE: admin
+      SPRING.DATA.MONGODB.PRIMARY.USERNAME: root
+      SPRING.DATA.MONGODB.PRIMARY.PASSWORD: password
+      SPRING.DATA.MONGODB.PRIMARY.HOST: mongo
+      SPRING.DATA.MONGODB.PRIMARY.PORT: 27017
+      SPRING.DATA.MONGODB.PRIMARY.DATABASE: movies
     ports:
       - 8081:8081
     depends_on:
       - naming-server
-      - movies-db
+      - streaming-db
       - rabbit-mq
     networks:
       - streaming-network
@@ -122,17 +93,17 @@ services:
       SPRING_RABBITMQ_HOST: rabbit-mq
       SPRING_ZIPKIN_SENDER_TYPE: rabbit
       SPRING.APPLICATION.NAME: series-service
-      SPRING.DATA.MONGODB.AUTHENTICATION.DATABASE: admin
-      SPRING.DATA.MONGODB.USERNAME: root
-      SPRING.DATA.MONGODB.PASSWORD: password
-      SPRING.DATA.URL.MONGODB.HOST: mongo
-      SPRING.DATA.URL.MONGODB.PORT: 27017
-      SPRING.DATA.URL.MONGODB.DATABASE: series
+      SPRING.DATA.MONGODB.SECONDARY.AUTHENTICATION.DATABASE: admin
+      SPRING.DATA.MONGODB.SECONDARY.USERNAME: root
+      SPRING.DATA.MONGODB.SECONDARY.PASSWORD: password
+      SPRING.DATA.MONGODB.SECONDARY.HOST: mongo
+      SPRING.DATA.MONGODB.SECONDARY.PORT: 27017
+      SPRING.DATA.MONGODB.SECONDARY.DATABASE: series
     ports:
       - 8180:8180
     depends_on:
       - naming-server
-      - series-db
+      - streaming-db
       - rabbit-mq
     networks:
       - streaming-network
@@ -150,12 +121,12 @@ services:
       SPRING_RABBITMQ_HOST: rabbit-mq
       SPRING_ZIPKIN_SENDER_TYPE: rabbit
       SPRING.APPLICATION.NAME: streaming-service
-      SPRING.DATA.MONGODB.AUTHENTICATION.DATABASE: admin
-      SPRING.DATA.MONGODB.USERNAME: root
-      SPRING.DATA.MONGODB.PASSWORD: password
-      SPRING.DATA.URL.MONGODB.HOST: mongo
-      SPRING.DATA.URL.MONGODB.PORT: 27017
-      SPRING.DATA.URL.MONGODB.DATABASE: streaming
+      SPRING.DATA.MONGODB.TERTIARY.AUTHENTICATION.DATABASE: admin
+      SPRING.DATA.MONGODB.TERTIARY.USERNAME: root
+      SPRING.DATA.MONGODB.TERTIARY.PASSWORD: password
+      SPRING.DATA.MONGODB.TERTIARY.HOST: mongo
+      SPRING.DATA.MONGODB.TERTIARY.PORT: 27017
+      SPRING.DATA.MONGODB.TERTIARY.DATABASE: streaming
     ports:
       - 8000:8000
     depends_on:

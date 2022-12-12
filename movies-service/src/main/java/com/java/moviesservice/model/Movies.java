@@ -1,28 +1,43 @@
 package com.java.moviesservice.model;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Objects;
 
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
+import javax.persistence.Column;
+import javax.persistence.ElementCollection;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
-@Document("movies")
-public class Movies {
+@Entity(name = "movies")
+public class Movies implements Serializable {
+
+	private static final long serialVersionUID = 1L;
 
 	@Id
-	private String id;
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Integer id;
 
+	@Column(nullable = false)
 	private String title;
 
+	@Column(nullable = false)
 	private String synopsis;
 
+	@Column(nullable = false)
 	private Integer duration;
 
+	@Column(name = "release_date")
 	private LocalDate releaseDate;
 
+	@Column(name = "image")
 	private String image;
 
+	@Column(name = "categories")
+	@ElementCollection(targetClass=String.class)
 	private List<String> categories;
 
 	public Movies() {}
@@ -92,11 +107,11 @@ public class Movies {
 		this.categories = categories;
 	}
 
-	public String getId() {
+	public Integer getId() {
 		return id;
 	}
 
-	public void setId(String id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 
