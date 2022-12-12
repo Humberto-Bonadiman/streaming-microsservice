@@ -34,24 +34,24 @@ public class StreamingController implements StreamingControllerInterface {
 	@Override
 	@Operation(summary = "Show all streaming data")
 	public ResponseEntity<List<Streaming>> findAll() {
-		return ResponseEntity.status(HttpStatus.OK).body(streamingService.showAll());
+		return ResponseEntity.status(HttpStatus.OK).body(streamingService.listAll());
 	}
 
 	@Override
 	@Operation(summary = "Find a streaming data by id")
-	public ResponseEntity<Streaming> findById(String id) {
+	public ResponseEntity<Streaming> findById(Integer id) {
 		return ResponseEntity.status(HttpStatus.OK).body(streamingService.findById(id));
 	}
 
 	@Override
 	@Operation(summary = "Delete a streaming data by id")
-	public ResponseEntity<Object> deleteById(String id) {
+	public ResponseEntity<Object> deleteById(Integer id) {
 		return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
 	}
 
 	@Override
 	@Operation(summary = "Add a movie in streaming data")
-	public ResponseEntity<Streaming> updateWithMovie(String id, String idMovie) {
+	public ResponseEntity<Streaming> updateWithMovie(Integer id, Integer idMovie) {
 		return ResponseEntity
             .status(HttpStatus.OK)
             .body(streamingService.updateWithMovies(id, idMovie));
@@ -59,7 +59,7 @@ public class StreamingController implements StreamingControllerInterface {
 
 	@Override
 	@Operation(summary = "Add a serie in streaming data")
-	public ResponseEntity<Streaming> updateWithSerie(String id, String idSerie) {
+	public ResponseEntity<Streaming> updateWithSerie(Integer id, Integer idSerie) {
 		return ResponseEntity
 	        .status(HttpStatus.OK)
 	        .body(streamingService.updateWithMovies(id, idSerie));

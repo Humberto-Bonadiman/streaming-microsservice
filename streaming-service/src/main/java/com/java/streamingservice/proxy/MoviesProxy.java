@@ -10,5 +10,5 @@ import com.java.streamingservice.response.Movies;
 public interface MoviesProxy {
 
 	@GetMapping(value = "/movies-service/{id}")
-	public Movies getMovie(@PathVariable("id") String id); 
+	public Movies getMovie(@PathVariable("id") Integer id); 
 }

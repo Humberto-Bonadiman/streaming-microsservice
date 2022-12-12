@@ -5,11 +5,9 @@ import com.java.seriesservice.model.Series;
 import com.java.seriesservice.repository.SeriesRepository;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 @Service
-@Component
 public class SeriesService implements SeriesInterface {
 
 	@Autowired

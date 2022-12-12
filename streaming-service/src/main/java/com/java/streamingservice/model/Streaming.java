@@ -4,38 +4,45 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Objects;
 
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
-@Document("streaming")
+@Entity(name = "streaming")
 public class Streaming {
 
 	@Id
-	private String id;
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Integer id;
 
+	@Column(name = "category", nullable = false, length = 180)
 	private String category;
 
+	@Column(name = "types", nullable = false)
 	private List<String> types;
 
-	private List<HashMap<String, String>> audiovisualProduct;
+	@Column(name = "audio_visual_product")
+	private List<HashMap<String, Object>> audiovisualProduct;
 
 	public Streaming() {}
 
 	public Streaming(
 	    String category,
 	    List<String> types,
-	    List<HashMap<String, String>> audiovisualProduct
+	    List<HashMap<String, Object>> audiovisualProduct
 	) {
 		this.category = category;
 		this.types = types;
 		this.audiovisualProduct = audiovisualProduct;
 	}
 
-	public String getId() {
+	public Integer getId() {
 		return id;
 	}
 
-	public void setId(String id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 
@@ -55,11 +62,11 @@ public class Streaming {
 		this.types = types;
 	}
 
-	public List<HashMap<String, String>> getAudiovisualProduct() {
+	public List<HashMap<String, Object>> getAudiovisualProduct() {
 		return audiovisualProduct;
 	}
 
-	public void setAudiovisualProduct(List<HashMap<String, String>> audiovisualProduct) {
+	public void setAudiovisualProduct(List<HashMap<String, Object>> audiovisualProduct) {
 		this.audiovisualProduct = audiovisualProduct;
 	}
 

@@ -1,4 +1,4 @@
-package com.java.seriesservice.configuration;
+package com.java.streamingservice.configuration;
 
 import io.swagger.v3.oas.annotations.OpenAPIDefinition;
 import io.swagger.v3.oas.annotations.info.Info;
@@ -8,9 +8,9 @@ import io.swagger.v3.oas.models.info.License;
 import org.springframework.context.annotation.Bean;
 
 @OpenAPIDefinition(info =
-    @Info(title = "Series API",
+    @Info(title = "Streaming API",
     version = "v1",
-    description = "Documentarion of Series API"))
+    description = "Documentarion of Streaming API"))
 public class OpenApiConfiguration {
 
   @Bean
@@ -19,7 +19,7 @@ public class OpenApiConfiguration {
         .components(new Components())
         .info(
             new io.swagger.v3.oas.models.info.Info()
-            .title("Series API")
+            .title("Streaming API")
             .version("v1")
             .license(
                 new License()

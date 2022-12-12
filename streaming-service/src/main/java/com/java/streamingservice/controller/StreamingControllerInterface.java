@@ -44,7 +44,7 @@ public interface StreamingControllerInterface {
 		    	  schema = @Schema(implementation = Streaming.class)) }),
 		      @ApiResponse(responseCode = "404", description = "Streaming not found",
 		          content = @Content)})
-      public ResponseEntity<Streaming> findById(@PathVariable String id);
+      public ResponseEntity<Streaming> findById(@PathVariable Integer id);
 
 	  @PatchMapping("/{id}/with/{idMovie}")
 	  @ApiResponses(value = {
@@ -54,8 +54,8 @@ public interface StreamingControllerInterface {
 		      @ApiResponse(responseCode = "404", description = "Id not found",
 		          content = @Content)})
 	  public ResponseEntity<Streaming> updateWithMovie(
-          @PathVariable String id,
-          @PathVariable String idMovie
+          @PathVariable Integer id,
+          @PathVariable Integer idMovie
       );
 
 	  @PatchMapping("/{id}/with/{idSerie}")
@@ -66,8 +66,8 @@ public interface StreamingControllerInterface {
 		      @ApiResponse(responseCode = "404", description = "Id not found",
 		          content = @Content)})
 	  public ResponseEntity<Streaming> updateWithSerie(
-          @PathVariable String id,
-          @PathVariable String idSerie
+          @PathVariable Integer id,
+          @PathVariable Integer idSerie
       );
 
 	  @DeleteMapping("/{id}")
@@ -75,5 +75,5 @@ public interface StreamingControllerInterface {
 	      @ApiResponse(responseCode = "204", content = @Content),
 	      @ApiResponse(responseCode = "404", description = "Streaming not found",
 	          content = @Content)})
-	  public ResponseEntity<Object> deleteById(@PathVariable String id);
+	  public ResponseEntity<Object> deleteById(@PathVariable Integer id);
 }

@@ -10,5 +10,5 @@ import com.java.streamingservice.response.Series;
 public interface SeriesProxy {
 
 	@GetMapping(value = "/series-service/{id}")
-	public Series getSerie(@PathVariable("id") String id);
+	public Series getSerie(@PathVariable("id") Integer id);
 }

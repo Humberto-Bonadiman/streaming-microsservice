@@ -11,7 +11,6 @@ import com.java.moviesservice.model.Movies;
 import com.java.moviesservice.repository.MoviesRepository;
 
 @Service
-@Component
 public class MoviesService implements MoviesInterface {
 
 	@Autowired
