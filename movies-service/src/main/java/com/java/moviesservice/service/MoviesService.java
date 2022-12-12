@@ -23,7 +23,7 @@ public class MoviesService implements MoviesInterface {
 		    moviesDto.getTitle(),
 		    moviesDto.getSynopsis(),
 		    moviesDto.getDuration(),
-		    moviesDto.getReleaseDate(),
+		    moviesDto.getReleaseYear(),
 		    moviesDto.getImage(),
 		    moviesDto.getCategories());
 		moviesRepository.save(movie);
@@ -46,7 +46,7 @@ public class MoviesService implements MoviesInterface {
 		movie.setTitle(moviesDto.getTitle());
 		movie.setSynopsis(moviesDto.getSynopsis());
 		movie.setDuration(moviesDto.getDuration());
-		movie.setReleaseDate(moviesDto.getReleaseDate());
+		movie.setReleaseYear(moviesDto.getReleaseYear());
 		movie.setImage(moviesDto.getImage());
 		movie.setCategories(moviesDto.getCategories());
 		moviesRepository.save(movie);

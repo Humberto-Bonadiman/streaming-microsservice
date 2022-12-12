@@ -21,32 +21,27 @@ public class SeriesController implements SeriesControllerInterface {
 	SeriesService seriesService;
 
 	@Override
-	@Operation(summary = "Create serie data")
 	public ResponseEntity<Series> create(SeriesDto seriesDto) {
 		return ResponseEntity.status(HttpStatus.CREATED).body(seriesService.create(seriesDto));
 	}
 
 	@Override
-	@Operation(summary = "Show all series")
 	public ResponseEntity<List<Series>> findAll() {
 		return ResponseEntity.status(HttpStatus.OK).body(seriesService.listAll());
 	}
 
 	@Override
-	@Operation(summary = "Show a serie by id")
-	public ResponseEntity<Series> findById(String id) {
+	public ResponseEntity<Series> findById(Integer id) {
 		return ResponseEntity.status(HttpStatus.OK).body(seriesService.findById(id));
 	}
 
 	@Override
-	@Operation(summary = "Update a serie by id")
-	public ResponseEntity<Series> update(String id, SeriesDto seriesDto) {
+	public ResponseEntity<Series> update(Integer id, SeriesDto seriesDto) {
 		return ResponseEntity.status(HttpStatus.OK).body(seriesService.update(id, seriesDto));
 	}
 
 	@Override
-	@Operation(summary = "Delete a serie by id")
-	public ResponseEntity<Object> deleteById(String id) {
+	public ResponseEntity<Object> deleteById(Integer id) {
 		return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
 	}
 }

@@ -1,29 +1,48 @@
 package com.java.seriesservice.model;
 
+import java.io.Serializable;
 import java.util.List;
 import java.util.Objects;
 
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
+import javax.persistence.Column;
+import javax.persistence.ElementCollection;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.validation.constraints.Size;
 
-@Document("series")
-public class Series {
+@Entity(name = "series")
+public class Series implements Serializable {
+
+	private static final long serialVersionUID = 1L;
 
 	@Id
-	private String id;
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Integer id;
 
+	@Column(nullable = false)
 	private String title;
 
+	@Column(name = "synopsis", nullable = false, columnDefinition = "LONGTEXT", length = 1000)
+	@Size(min = 0, max = 1000)
 	private String synopsis;
 
+	@Column(nullable = false)
 	private Integer seasons;
 
+	@Column(nullable = false)
 	private Integer releaseYear;
 
+	@Column(name = "episodesPerSeason")
+	@ElementCollection(targetClass=Integer.class)
 	private List<Integer> episodesPerSeason;
 
+	@Column(name = "image")
 	private String image;
 
+	@Column(name = "categories")
+	@ElementCollection(targetClass=String.class)
 	private List<String> categories;
 
 	public Series() {}
@@ -102,11 +121,11 @@ public class Series {
 		this.categories = categories;
 	}
 
-	public String getId() {
+	public Integer getId() {
 		return id;
 	}
 
-	public void setId(String id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 

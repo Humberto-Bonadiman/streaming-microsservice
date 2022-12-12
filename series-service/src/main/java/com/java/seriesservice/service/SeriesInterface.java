@@ -10,9 +10,9 @@ public interface SeriesInterface {
 
 	public List<Series> listAll();
 
-	public Series findById(String id);
+	public Series findById(Integer id);
 
-	public Series update(String id, SeriesDto seriesDto);
+	public Series update(Integer id, SeriesDto seriesDto);
 
-	public void delete(String id);
+	public void delete(Integer id);
 }

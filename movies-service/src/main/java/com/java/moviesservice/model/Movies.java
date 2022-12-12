@@ -1,7 +1,7 @@
 package com.java.moviesservice.model;
 
 import java.io.Serializable;
-import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.List;
 import java.util.Objects;
 
@@ -11,6 +11,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Lob;
+import javax.validation.constraints.Size;
 
 @Entity(name = "movies")
 public class Movies implements Serializable {
@@ -24,14 +26,16 @@ public class Movies implements Serializable {
 	@Column(nullable = false)
 	private String title;
 
-	@Column(nullable = false)
+	@Lob
+	@Column(name = "synopsis", nullable = false, columnDefinition = "LONGTEXT", length = 1000)
+	@Size(min = 0, max = 1000)
 	private String synopsis;
 
 	@Column(nullable = false)
-	private Integer duration;
+	private LocalTime duration;
 
-	@Column(name = "release_date")
-	private LocalDate releaseDate;
+	@Column(name = "release_year")
+	private Integer releaseYear;
 
 	@Column(name = "image")
 	private String image;
@@ -45,8 +49,8 @@ public class Movies implements Serializable {
 	public Movies(
 	    String title,
 	    String synopsis,
-	    Integer duration,
-	    LocalDate releaseDate,
+	    LocalTime duration,
+	    Integer releaseYear,
 	    String image,
 	    List<String> categories
 	) {
@@ -54,7 +58,7 @@ public class Movies implements Serializable {
 		this.title = title;
 		this.synopsis = synopsis;
 		this.duration = duration;
-		this.releaseDate = releaseDate;
+		this.releaseYear = releaseYear;
 		this.image = image;
 		this.categories = categories;
 	}
@@ -75,20 +79,20 @@ public class Movies implements Serializable {
 		this.synopsis = synopsis;
 	}
 
-	public Integer getDuration() {
+	public LocalTime getDuration() {
 		return duration;
 	}
 
-	public void setDuration(Integer duration) {
+	public void setDuration(LocalTime duration) {
 		this.duration = duration;
 	}
 
-	public LocalDate getReleaseDate() {
-		return releaseDate;
+	public Integer getReleaseYear() {
+		return releaseYear;
 	}
 
-	public void setReleaseDate(LocalDate releaseDate) {
-		this.releaseDate = releaseDate;
+	public void setReleaseYear(Integer releaseYear) {
+		this.releaseYear = releaseYear;
 	}
 
 	public String getImage() {
@@ -117,7 +121,7 @@ public class Movies implements Serializable {
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(categories, duration, id, image, releaseDate, synopsis, title);
+		return Objects.hash(categories, duration, id, image, releaseYear, synopsis, title);
 	}
 
 	@Override
@@ -131,13 +135,13 @@ public class Movies implements Serializable {
 		Movies other = (Movies) obj;
 		return Objects.equals(categories, other.categories) && Objects.equals(duration, other.duration)
 				&& Objects.equals(id, other.id) && Objects.equals(image, other.image)
-				&& Objects.equals(releaseDate, other.releaseDate) && Objects.equals(synopsis, other.synopsis)
+				&& Objects.equals(releaseYear, other.releaseYear) && Objects.equals(synopsis, other.synopsis)
 				&& Objects.equals(title, other.title);
 	}
 
 	@Override
 	public String toString() {
 		return "Movies [id=" + id + ", title=" + title + ", synopsis=" + synopsis + ", duration=" + duration
-				+ ", releaseDate=" + releaseDate + ", image=" + image + ", categories=" + categories + "]";
+				+ ", releaseYear=" + releaseYear + ", image=" + image + ", categories=" + categories + "]";
 	}
 }

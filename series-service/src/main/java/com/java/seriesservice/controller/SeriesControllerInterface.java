@@ -1,5 +1,6 @@
 package com.java.seriesservice.controller;
 
+import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.ArraySchema;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
@@ -30,6 +31,7 @@ public interface SeriesControllerInterface {
 	          schema = @Schema(implementation = Series.class)) }),
 	      @ApiResponse(responseCode = "400", description = "Wrong format",
 	          content = @Content)})
+	  @Operation(summary = "Create serie data")
 	  public ResponseEntity<Series> create(@RequestBody SeriesDto seriesDto);
 
 	  @GetMapping
@@ -37,6 +39,7 @@ public interface SeriesControllerInterface {
 	      @ApiResponse(responseCode = "200", description = "Show all series", 
 	          content = { @Content(mediaType = "application/json", 
 	          array = @ArraySchema(schema = @Schema(implementation = Series.class))) })})
+	  @Operation(summary = "Show all series")
 	  public ResponseEntity<List<Series>> findAll();
 
 	  @GetMapping("/{id}")
@@ -46,7 +49,8 @@ public interface SeriesControllerInterface {
 		    	  schema = @Schema(implementation = Series.class)) }),
 		      @ApiResponse(responseCode = "404", description = "Series not found",
 		          content = @Content)})
-      public ResponseEntity<Series> findById(@PathVariable String id);
+	  @Operation(summary = "Show a serie by id")
+      public ResponseEntity<Series> findById(@PathVariable Integer id);
 
 	  @PatchMapping("/{id}")
 	  @ApiResponses(value = {
@@ -55,12 +59,14 @@ public interface SeriesControllerInterface {
 		    	  schema = @Schema(implementation = Series.class)) }),
 		      @ApiResponse(responseCode = "404", description = "Series not found",
 		          content = @Content)})
-	  public ResponseEntity<Series> update(@PathVariable String id, @RequestBody SeriesDto seriesDto);
+	  @Operation(summary = "Update a serie by id")
+	  public ResponseEntity<Series> update(@PathVariable Integer id, @RequestBody SeriesDto seriesDto);
 
 	  @DeleteMapping("/{id}")
 	  @ApiResponses(value = {
 	      @ApiResponse(responseCode = "204", content = @Content),
 	      @ApiResponse(responseCode = "404", description = "Series not found",
 	          content = @Content)})
-	  public ResponseEntity<Object> deleteById(@PathVariable String id);
+	  @Operation(summary = "Delete a serie by id")
+	  public ResponseEntity<Object> deleteById(@PathVariable Integer id);
 }

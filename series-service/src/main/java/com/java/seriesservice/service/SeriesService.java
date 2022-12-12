@@ -36,12 +36,12 @@ public class SeriesService implements SeriesInterface {
 	}
 
 	@Override
-	public Series findById(String id) {
+	public Series findById(Integer id) {
 		return seriesRepository.findById(id).get();
 	}
 
 	@Override
-	public Series update(String id, SeriesDto seriesDto) {
+	public Series update(Integer id, SeriesDto seriesDto) {
 		Series serie = seriesRepository.findById(id).get();
 	    serie.setTitle(seriesDto.getTitle());
 	    serie.setSynopsis(seriesDto.getSynopsis());
@@ -55,7 +55,7 @@ public class SeriesService implements SeriesInterface {
 	}
 
 	@Override
-	public void delete(String id) {
+	public void delete(Integer id) {
 		seriesRepository.deleteById(id);
 	}
 }
