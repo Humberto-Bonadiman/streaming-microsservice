@@ -1,14 +1,11 @@
 package com.java.moviesservice.service;
 
-import java.util.List;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Service;
-
 import com.java.moviesservice.dto.MoviesDto;
 import com.java.moviesservice.model.Movies;
 import com.java.moviesservice.repository.MoviesRepository;
+import java.util.List;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 @Service
 public class MoviesService implements MoviesInterface {
