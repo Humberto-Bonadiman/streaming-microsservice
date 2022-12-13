@@ -5,10 +5,13 @@ import java.util.List;
 import java.util.Objects;
 
 import javax.persistence.Column;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Lob;
+import javax.persistence.MapKeyColumn;
 
 @Entity(name = "streaming")
 public class Streaming {
@@ -21,9 +24,13 @@ public class Streaming {
 	private String category;
 
 	@Column(name = "types", nullable = false)
+	@ElementCollection(targetClass=String.class)
 	private List<String> types;
 
+	@Lob
 	@Column(name = "audio_visual_product")
+	@ElementCollection(targetClass=HashMap.class)
+	@MapKeyColumn(name="audio_visual_product")
 	private List<HashMap<String, Object>> audiovisualProduct;
 
 	public Streaming() {}

@@ -1,21 +1,16 @@
 package com.java.streamingservice.controller;
 
+import com.java.streamingservice.dto.StreamingDto;
+import com.java.streamingservice.model.Streaming;
+import com.java.streamingservice.service.StreamingService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RestController;
-
-import com.java.streamingservice.dto.StreamingDto;
-import com.java.streamingservice.model.Streaming;
-import com.java.streamingservice.service.StreamingService;
-
-import io.swagger.v3.oas.annotations.Operation;
-import io.swagger.v3.oas.annotations.tags.Tag;
-
-// import io.swagger.v3.oas.annotations.Operation;
 
 @CrossOrigin
 @RestController
@@ -46,6 +41,7 @@ public class StreamingController implements StreamingControllerInterface {
 	@Override
 	@Operation(summary = "Delete a streaming data by id")
 	public ResponseEntity<Object> deleteById(Integer id) {
+		streamingService.delete(id);
 		return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
 	}
 
@@ -62,6 +58,6 @@ public class StreamingController implements StreamingControllerInterface {
 	public ResponseEntity<Streaming> updateWithSerie(Integer id, Integer idSerie) {
 		return ResponseEntity
 	        .status(HttpStatus.OK)
-	        .body(streamingService.updateWithMovies(id, idSerie));
+	        .body(streamingService.updateWithSeries(id, idSerie));
 	}
 }

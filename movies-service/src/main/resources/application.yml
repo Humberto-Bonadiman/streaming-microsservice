@@ -25,7 +25,7 @@ spring:
     name: movies-service
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://127.0.0.1:3306/movies?enabledTLSProtocols=TLSv1.2&useTimezone=true?serverTimezone=UTC&createDatabaseIfNotExist=true&allowPublicKeyRetrieval=true&useSSL=false
+    url: jdbc:mysql://localhost:3306/movies?enabledTLSProtocols=TLSv1.2&useTimezone=true?serverTimezone=UTC&createDatabaseIfNotExist=true&allowPublicKeyRetrieval=true&useSSL=false
     username: root
     password: 1234
   jackson:
@@ -38,10 +38,6 @@ spring:
     properties:
       hibernate:
         dialect: org.hibernate.dialect.MySQL8Dialect
-  flyway:
-    url: jdbc:mysql://127.0.0.1:3306/movies?enabledTLSProtocols=TLSv1.2&useTimezone=true?serverTimezone=UTC&createDatabaseIfNotExist=true&allowPublicKeyRetrieval=true&useSSL=false
-    user: root
-    password: 1234
   sleuth:
     sampler:
       probability: 1.0

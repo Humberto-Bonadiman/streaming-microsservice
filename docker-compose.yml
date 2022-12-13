@@ -20,7 +20,7 @@ services:
     networks:
       - streaming-network
 
-  movies-db:
+  audiovisual-db:
     image: mysql:8
     command: --default-authentication-plugin=mysql_native_password
     restart: always
@@ -31,20 +31,6 @@ services:
       - 3306:3306
     expose:
       - 3306
-    networks:
-      - streaming-network
-
-  series-db:
-    image: mysql:8
-    command: --default-authentication-plugin=mysql_native_password
-    restart: always
-    environment:
-      - MYSQL_ROOT_PASSWORD=1234
-      - MYSQL_DATABASE=series
-    ports:
-      - 3308:3308
-    expose:
-      - 3308
     networks:
       - streaming-network
 
@@ -104,7 +90,7 @@ services:
       - 8081:8081
     depends_on:
       - naming-server
-      - movies-db
+      - audiovisual-db
       - rabbit-mq
     networks:
       - streaming-network
@@ -122,17 +108,17 @@ services:
       SPRING_RABBITMQ_HOST: rabbit-mq
       SPRING_ZIPKIN_SENDER_TYPE: rabbit
       SPRING.APPLICATION.NAME: series-service
-      SPRING.DATASOURCE.URL: jdbc:mysql://series-db:3308/series?useSSL=false&serverTimezone=UTC&enabledTLSProtocols=TLSv1.2&createDatabaseIfNotExist=true&allowPublicKeyRetrieval=true&useSSL=false
+      SPRING.DATASOURCE.URL: jdbc:mysql://series-db:3306/series?useSSL=false&serverTimezone=UTC&enabledTLSProtocols=TLSv1.2&createDatabaseIfNotExist=true&allowPublicKeyRetrieval=true&useSSL=false
       SPRING.DATASOURCE.USERNAME: root
       SPRING.DATASOURCE.PASSWORD: 1234
-      SPRING.FLYWAY.URL: jdbc:mysql://series-db:3308/series?useSSL=false&serverTimezone=UTC&enabledTLSProtocols=TLSv1.2&createDatabaseIfNotExist=true&allowPublicKeyRetrieval=true&useSSL=false
+      SPRING.FLYWAY.URL: jdbc:mysql://series-db:3306/series?useSSL=false&serverTimezone=UTC&enabledTLSProtocols=TLSv1.2&createDatabaseIfNotExist=true&allowPublicKeyRetrieval=true&useSSL=false
       SPRING.FLYWAY.USER: root
       SPRING.FLYWAY.PASSWORD: 1234
     ports:
       - 8180:8180
     depends_on:
       - naming-server
-      - series-db
+      - audiovisual-db
       - rabbit-mq
     networks:
       - streaming-network

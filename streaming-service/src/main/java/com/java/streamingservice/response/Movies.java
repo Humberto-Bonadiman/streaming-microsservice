@@ -1,6 +1,6 @@
 package com.java.streamingservice.response;
 
-import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.List;
 import java.util.Objects;
 
@@ -12,9 +12,9 @@ public class Movies {
 
 	private String synopsis;
 
-	private Integer duration;
+	private String duration;
 
-	private LocalDate releaseDate;
+	private Integer releaseYear;
 
 	private String image;
 
@@ -25,8 +25,8 @@ public class Movies {
 	public Movies(
 	    String title,
 	    String synopsis,
-	    Integer duration,
-	    LocalDate releaseDate,
+	    String duration,
+	    Integer releaseYear,
 	    String image,
 	    List<String> categories
 	) {
@@ -34,7 +34,7 @@ public class Movies {
 		this.title = title;
 		this.synopsis = synopsis;
 		this.duration = duration;
-		this.releaseDate = releaseDate;
+		this.releaseYear = releaseYear;
 		this.image = image;
 		this.categories = categories;
 	}
@@ -55,20 +55,20 @@ public class Movies {
 		this.synopsis = synopsis;
 	}
 
-	public Integer getDuration() {
+	public String getDuration() {
 		return duration;
 	}
 
-	public void setDuration(Integer duration) {
+	public void setDuration(String duration) {
 		this.duration = duration;
 	}
 
-	public LocalDate getReleaseDate() {
-		return releaseDate;
+	public Integer getReleaseYear() {
+		return releaseYear;
 	}
 
-	public void setReleaseDate(LocalDate releaseDate) {
-		this.releaseDate = releaseDate;
+	public void setReleaseYear(Integer releaseYear) {
+		this.releaseYear = releaseYear;
 	}
 
 	public String getImage() {
@@ -97,7 +97,7 @@ public class Movies {
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(categories, duration, id, image, releaseDate, synopsis, title);
+		return Objects.hash(categories, duration, id, image, releaseYear, synopsis, title);
 	}
 
 	@Override
@@ -111,13 +111,13 @@ public class Movies {
 		Movies other = (Movies) obj;
 		return Objects.equals(categories, other.categories) && Objects.equals(duration, other.duration)
 				&& Objects.equals(id, other.id) && Objects.equals(image, other.image)
-				&& Objects.equals(releaseDate, other.releaseDate) && Objects.equals(synopsis, other.synopsis)
+				&& Objects.equals(releaseYear, other.releaseYear) && Objects.equals(synopsis, other.synopsis)
 				&& Objects.equals(title, other.title);
 	}
 
 	@Override
 	public String toString() {
 		return "Movies [id=" + id + ", title=" + title + ", synopsis=" + synopsis + ", duration=" + duration
-				+ ", releaseDate=" + releaseDate + ", image=" + image + ", categories=" + categories + "]";
+				+ ", releaseYear=" + releaseYear + ", image=" + image + ", categories=" + categories + "]";
 	}
 }

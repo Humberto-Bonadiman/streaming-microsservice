@@ -32,7 +32,7 @@ public class Movies implements Serializable {
 	private String synopsis;
 
 	@Column(nullable = false)
-	private LocalTime duration;
+	private String duration;
 
 	@Column(name = "release_year")
 	private Integer releaseYear;
@@ -49,7 +49,7 @@ public class Movies implements Serializable {
 	public Movies(
 	    String title,
 	    String synopsis,
-	    LocalTime duration,
+	    String duration,
 	    Integer releaseYear,
 	    String image,
 	    List<String> categories
@@ -79,11 +79,11 @@ public class Movies implements Serializable {
 		this.synopsis = synopsis;
 	}
 
-	public LocalTime getDuration() {
+	public String getDuration() {
 		return duration;
 	}
 
-	public void setDuration(LocalTime duration) {
+	public void setDuration(String duration) {
 		this.duration = duration;
 	}
 

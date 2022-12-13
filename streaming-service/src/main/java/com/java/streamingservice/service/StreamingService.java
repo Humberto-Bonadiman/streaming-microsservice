@@ -53,6 +53,7 @@ public class StreamingService implements StreamingInterface {
 		movieInformation.put("id", foundMovie.getId());
 		movieInformation.put("title", foundMovie.getTitle());
 		movieInformation.put("image", foundMovie.getImage());
+		movieInformation.put("type", "movie");
 		List<HashMap<String, Object>> allAudioVisualProducts = streamingMovie.getAudiovisualProduct();
 		allAudioVisualProducts.add(movieInformation);
 		streamingMovie.setAudiovisualProduct(allAudioVisualProducts);
@@ -67,6 +68,7 @@ public class StreamingService implements StreamingInterface {
 		serieInformation.put("id", foundSerie.getId());
 		serieInformation.put("title", foundSerie.getTitle());
 		serieInformation.put("image", foundSerie.getImage());
+		serieInformation.put("type", "serie");
 		List<HashMap<String, Object>> allAudioVisualProducts = streamingSerie.getAudiovisualProduct();
 		allAudioVisualProducts.add(serieInformation);
 		streamingSerie.setAudiovisualProduct(allAudioVisualProducts);

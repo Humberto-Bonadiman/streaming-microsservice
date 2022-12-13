@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @RequestMapping("/streaming-service")
 public interface StreamingControllerInterface {
@@ -46,7 +47,7 @@ public interface StreamingControllerInterface {
 		          content = @Content)})
       public ResponseEntity<Streaming> findById(@PathVariable Integer id);
 
-	  @PatchMapping("/{id}/with/{idMovie}")
+	  @PatchMapping("/addMovie")
 	  @ApiResponses(value = {
 		      @ApiResponse(responseCode = "200", description = "Update a streaming with a movie",
 		          content = { @Content(mediaType = "application/json", 
@@ -54,11 +55,11 @@ public interface StreamingControllerInterface {
 		      @ApiResponse(responseCode = "404", description = "Id not found",
 		          content = @Content)})
 	  public ResponseEntity<Streaming> updateWithMovie(
-          @PathVariable Integer id,
-          @PathVariable Integer idMovie
+          @RequestParam Integer id,
+          @RequestParam Integer idMovie
       );
 
-	  @PatchMapping("/{id}/with/{idSerie}")
+	  @PatchMapping("/addSerie")
 	  @ApiResponses(value = {
 		      @ApiResponse(responseCode = "200", description = "Update a streaming with a serie",
 		          content = { @Content(mediaType = "application/json", 
@@ -66,8 +67,8 @@ public interface StreamingControllerInterface {
 		      @ApiResponse(responseCode = "404", description = "Id not found",
 		          content = @Content)})
 	  public ResponseEntity<Streaming> updateWithSerie(
-          @PathVariable Integer id,
-          @PathVariable Integer idSerie
+          @RequestParam Integer id,
+          @RequestParam Integer idSerie
       );
 
 	  @DeleteMapping("/{id}")

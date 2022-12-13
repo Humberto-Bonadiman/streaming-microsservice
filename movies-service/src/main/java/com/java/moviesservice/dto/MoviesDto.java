@@ -1,6 +1,5 @@
 package com.java.moviesservice.dto;
 
-import java.time.LocalTime;
 import java.util.List;
 
 public class MoviesDto {
@@ -9,7 +8,7 @@ public class MoviesDto {
 
 	private String synopsis;
 
-	private LocalTime duration;
+	private String duration;
 
 	private Integer releaseYear;
 
@@ -25,7 +24,7 @@ public class MoviesDto {
 		return synopsis;
 	}
 
-	public LocalTime getDuration() {
+	public String getDuration() {
 		return duration;
 	}
 

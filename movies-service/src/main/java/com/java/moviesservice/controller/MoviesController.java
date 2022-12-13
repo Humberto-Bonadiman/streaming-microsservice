@@ -50,6 +50,7 @@ public class MoviesController implements MoviesControllerInterface {
 	@Override
 	@Operation(summary = "Delete a movie by id")
 	public ResponseEntity<Object> deleteById(Integer id) {
+		moviesService.delete(id);
 		return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
 	}
 
