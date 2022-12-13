@@ -1,7 +1,6 @@
 package com.java.moviesservice.model;
 
 import java.io.Serializable;
-import java.time.LocalTime;
 import java.util.List;
 import java.util.Objects;
 

@@ -39,13 +39,6 @@ spring:
     properties:
       hibernate:
         dialect: org.hibernate.dialect.MySQL8Dialect
-  flyway:
-    url: jdbc:mysql://localhost:3306/streaming?useTimezone=true?serverTimezone=UTC&createDatabaseIfNotExist=true&allowPublicKeyRetrieval=true&useSSL=false
-    user: root
-    password: 1234
-  sleuth:
-    sampler:
-      probability: 1.0
 springdoc:
   show-actuator: true
   api-docs:
