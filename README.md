@@ -1,2 +1,1 @@
-# cinema-microsservices
-# streaming-microsservice
+# Bem Vindos ao repositório do projeto Streaming Microsservice
