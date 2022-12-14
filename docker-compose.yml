@@ -22,6 +22,7 @@ services:
 
   movies-db:
     image: mysql:8
+    container_name: movies-db
     command: --default-authentication-plugin=mysql_native_password
     restart: always
     environment:
@@ -29,16 +30,17 @@ services:
       MYSQL_DATABASE: movies
       MYSQL_PASSWORD: 1234
       MYSQL_ROOT_HOST: '%'
-      MYSQL_TCP_PORT: 3306
+      MYSQL_TCP_PORT: 3307
     ports:
-      - 3306:3306
+      - 3307:3307
     expose:
-      - 3306
+      - 3307
     networks:
       - streaming-network
 
   series-db:
     image: mysql:8
+    container_name: series-db
     command: --default-authentication-plugin=mysql_native_password
     restart: always
     environment:
@@ -56,6 +58,7 @@ services:
 
   streaming-db:
     image: mysql:8
+    container_name: streaming-db
     command: --default-authentication-plugin=mysql_native_password
     restart: always
     environment:
@@ -87,11 +90,16 @@ services:
       - rabbit-mq
     environment:
       EUREKA.CLIENT.SERVICEURL.DEFAULTZONE: http://naming-server:8761/eureka
+      SPRING.ZIPKIN.BASEURL: http://zipkin-server:9411/
+      RABBIT_URI: amqp://guest:guest@rabbit-mq:5672
+      SPRING_RABBITMQ_HOST: rabbit-mq
+      SPRING_ZIPKIN_SENDER_TYPE: rabbit
     networks:
       - streaming-network
 
   movies-service:
     restart: always
+    image: humbertobonadiman/movies-service
     build:
       context: .
       dockerfile: movies-service/Dockerfile
@@ -103,7 +111,7 @@ services:
       SPRING_RABBITMQ_HOST: rabbit-mq
       SPRING_ZIPKIN_SENDER_TYPE: rabbit
       SPRING.APPLICATION.NAME: movies-service
-      SPRING.DATASOURCE.URL: jdbc:mysql://movies-db:3306/movies?useSSL=false&serverTimezone=UTC&enabledTLSProtocols=TLSv1.2&createDatabaseIfNotExist=true&allowPublicKeyRetrieval=true&useSSL=false
+      SPRING.DATASOURCE.URL: jdbc:mysql://movies-db:3307/movies?useSSL=false&serverTimezone=UTC&enabledTLSProtocols=TLSv1.2&createDatabaseIfNotExist=true&allowPublicKeyRetrieval=true&useSSL=false
       SPRING.DATASOURCE.USERNAME: root
       SPRING.DATASOURCE.PASSWORD: 1234
     ports:
@@ -117,6 +125,7 @@ services:
 
   series-service:
     restart: always
+    image: humbertobonadiman/series-service
     build:
       context: .
       dockerfile: series-service/Dockerfile
@@ -142,6 +151,7 @@ services:
 
   streaming-service:
     restart: always
+    image: humbertobonadiman/streaming-service
     build:
       context: .
       dockerfile: streaming-service/Dockerfile

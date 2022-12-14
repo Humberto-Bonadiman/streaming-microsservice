@@ -4,22 +4,6 @@ eureka:
   client:
     service-url:
       defaultZone: http://localhost:8761/eureka
-resilience4j:
-  bulkhead:
-    instances:
-      default:
-        max-concurrent-calls: 10
-  ratelimiter:
-    instances:
-      default:
-        limit-for-period: 2
-        limit-refresh-period: 10s
-  retry:
-    instances:
-      foo-bar:
-        max-attempts: 5
-        wait-duration: 1s
-        enable-exponential-backoff: true
 spring:
   application:
     name: movies-service
@@ -28,10 +12,6 @@ spring:
     url: jdbc:mysql://localhost:3306/movies?enabledTLSProtocols=TLSv1.2&useTimezone=true?serverTimezone=UTC&createDatabaseIfNotExist=true&allowPublicKeyRetrieval=true&useSSL=false
     username: root
     password: 1234
-  jackson:
-    default-property-inclusion: NON_NULL
-    serialization:
-      fail-on-empty-beans: false
   jpa:
     hibernate:
       ddl-auto: update
@@ -42,6 +22,5 @@ spring:
     sampler:
       probability: 1.0
 springdoc:
-  show-actuator: true
   api-docs:
-    path: movies-service/v3/api-docs
+    path: movies-service/v3/api-docs 
