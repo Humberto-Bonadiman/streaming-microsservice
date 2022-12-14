@@ -51,7 +51,6 @@ public class MoviesService implements MoviesInterface {
 
 	@Override
 	public void delete(Integer id) {
-		// Movies movie = moviesRepository.findById(id).get();
 		moviesRepository.deleteById(id);
 	}
 }
