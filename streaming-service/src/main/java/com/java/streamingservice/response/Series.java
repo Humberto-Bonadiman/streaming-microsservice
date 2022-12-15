@@ -41,6 +41,28 @@ public class Series {
 		this.categories = categories;
 	}
 
+
+
+	public Series(
+	    Integer id,
+	    String title,
+	    String synopsis,
+	    Integer seasons,
+	    Integer releaseYear,
+	    List<Integer> episodesPerSeason,
+	    String image,
+	    List<String> categories
+    ) {
+		this.id = id;
+		this.title = title;
+		this.synopsis = synopsis;
+		this.seasons = seasons;
+		this.releaseYear = releaseYear;
+		this.episodesPerSeason = episodesPerSeason;
+		this.image = image;
+		this.categories = categories;
+	}
+
 	public String getTitle() {
 		return title;
 	}

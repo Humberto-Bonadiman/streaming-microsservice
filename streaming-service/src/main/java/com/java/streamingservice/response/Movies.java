@@ -1,6 +1,5 @@
 package com.java.streamingservice.response;
 
-import java.time.LocalTime;
 import java.util.List;
 import java.util.Objects;
 
@@ -30,7 +29,24 @@ public class Movies {
 	    String image,
 	    List<String> categories
 	) {
-		super();
+		this.title = title;
+		this.synopsis = synopsis;
+		this.duration = duration;
+		this.releaseYear = releaseYear;
+		this.image = image;
+		this.categories = categories;
+	}
+
+	public Movies(
+	    Integer id,
+	    String title,
+	    String synopsis,
+	    String duration,
+	    Integer releaseYear,
+	    String image,
+	    List<String> categories
+    ) {
+		this.id = id;
 		this.title = title;
 		this.synopsis = synopsis;
 		this.duration = duration;
