@@ -45,6 +45,20 @@ public class Streaming {
 		this.audiovisualProduct = audiovisualProduct;
 	}
 
+	
+
+	public Streaming(
+	    Integer id,
+	    String category,
+	    List<String> types,
+	    List<HashMap<String, Object>> audiovisualProduct
+	) {
+		this.id = id;
+		this.category = category;
+		this.types = types;
+		this.audiovisualProduct = audiovisualProduct;
+	}
+
 	public Integer getId() {
 		return id;
 	}

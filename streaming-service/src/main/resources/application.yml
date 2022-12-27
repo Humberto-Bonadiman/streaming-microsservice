@@ -46,3 +46,5 @@ springdoc:
   show-actuator: true
   api-docs:
     path: streaming-service/v3/api-docs
+stocks-api:
+  base-url: http://localhost:8100
