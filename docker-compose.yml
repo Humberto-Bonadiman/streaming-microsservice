@@ -100,9 +100,6 @@ services:
   movies-service:
     restart: always
     image: humbertobonadiman/movies-service:1.0.0
-    build:
-      context: .
-      dockerfile: movies-service/Dockerfile
     environment:
       TZ: America/Sao_Paulo
       EUREKA.CLIENT.SERVICEURL.DEFAULTZONE: http://naming-server:8761/eureka
@@ -126,9 +123,6 @@ services:
   series-service:
     restart: always
     image: humbertobonadiman/series-service:1.0.0
-    build:
-      context: .
-      dockerfile: series-service/Dockerfile
     environment:
       TZ: America/Sao_Paulo
       EUREKA.CLIENT.SERVICEURL.DEFAULTZONE: http://naming-server:8761/eureka
@@ -152,9 +146,6 @@ services:
   streaming-service:
     restart: always
     image: humbertobonadiman/streaming-service:1.0.0
-    build:
-      context: .
-      dockerfile: streaming-service/Dockerfile
     environment:
       TZ: America/Sao_Paulo
       EUREKA.CLIENT.SERVICEURL.DEFAULTZONE: http://naming-server:8761/eureka
