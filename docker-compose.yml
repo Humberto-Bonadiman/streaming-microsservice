@@ -99,7 +99,7 @@ services:
 
   movies-service:
     restart: always
-    image: humbertobonadiman/movies-service
+    image: humbertobonadiman/movies-service:1.0.0
     build:
       context: .
       dockerfile: movies-service/Dockerfile
@@ -125,7 +125,7 @@ services:
 
   series-service:
     restart: always
-    image: humbertobonadiman/series-service
+    image: humbertobonadiman/series-service:1.0.0
     build:
       context: .
       dockerfile: series-service/Dockerfile
@@ -151,7 +151,7 @@ services:
 
   streaming-service:
     restart: always
-    image: humbertobonadiman/streaming-service
+    image: humbertobonadiman/streaming-service:1.0.0
     build:
       context: .
       dockerfile: streaming-service/Dockerfile
