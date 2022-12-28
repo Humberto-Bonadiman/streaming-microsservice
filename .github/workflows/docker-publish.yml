@@ -24,8 +24,24 @@ jobs:
            java-version: '11'
            distribution: 'adopt'
 
-        - name: Streaming Microsservice Container Jar
-          working-directory: .
+        - name: Eureka Naming Server Container Image
+          working-directory: ./naming-server
+          run: mvn spring-boot:build-image -DskipTests
+     
+        - name: Eureka API Gateway Container Image
+          working-directory: ./api-gateway
+          run: mvn spring-boot:build-image -DskipTests
+
+        - name: Eureka Movies Service Container Image
+          working-directory: ./movies-service
+          run: mvn spring-boot:build-image -DskipTests
+
+        - name: Eureka Series Service Container Image
+          working-directory: ./series-service
+          run: mvn spring-boot:build-image -DskipTests
+
+        - name: Eureka Streaming Service Container Image
+          working-directory: ./streaming-service
           run: mvn spring-boot:build-image -DskipTests
 
         - name: Docker Compose Build
