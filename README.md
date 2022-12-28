@@ -81,9 +81,9 @@ mvn spring-boot:run
 
 ## Documentação
 
-![Documentação Swagger](swagger_bank_account.png)
-![Documentação Swagger](swagger_bank_account.png)
-![Documentação Swagger](swagger_bank_account.png)
+![Documentação Swagger Movies Service](swagger_movies_service.png)
+![Documentação Swagger Series Service](swagger_series_service.png)
+![Documentação Swagger Streaming Service](swagger_streaming_service.png)
 
 Para acessar a documentação pelo swagger rode o comando **mvn spring-boot:run** em todos os diretórios ou **docker-compose up** no diretório raiz e acesse o projeto via browser, no caminho http://localhost:8765/swagger-ui.html.
 
