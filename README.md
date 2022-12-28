@@ -87,6 +87,14 @@ mvn spring-boot:run
 
 Para acessar a documentação pelo swagger rode o comando **mvn spring-boot:run** em todos os diretórios ou **docker-compose up** no diretório raiz e acesse o projeto via browser, no caminho http://localhost:8765/swagger-ui.html.
 
+---
+
+## Acessar o RabbitMQ
+
+Para acessar o rabbitMQ utilize o usuário e a senha como **guest**.
+
+---
+
 ## URLs disponíveis com o projeto rodando
 
 Eureka (Naming Server) --> http://localhost:8761/
