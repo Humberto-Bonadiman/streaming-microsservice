@@ -54,9 +54,9 @@ jobs:
             docker tag ${{ secrets.DOCKER_USERNAME }}/naming-server:0.0.1-SNAPSHOT ${{ secrets.DOCKER_USERNAME }}/naming-server:latest
             docker tag ${{ secrets.DOCKER_USERNAME }}/api-gateway:0.0.1-SNAPSHOT ${{ secrets.DOCKER_USERNAME }}/api-gateway:${{github.run_id}}
             docker tag ${{ secrets.DOCKER_USERNAME }}/api-gateway:0.0.1-SNAPSHOT ${{ secrets.DOCKER_USERNAME }}/api-gateway:latest
-            docker tag ${{ secrets.DOCKER_USERNAME }}/movies-service:latest ${{ secrets.DOCKER_USERNAME }}/movies-service:latest
-            docker tag ${{ secrets.DOCKER_USERNAME }}/series-service:latest ${{ secrets.DOCKER_USERNAME }}/series-service:latest
-            docker tag ${{ secrets.DOCKER_USERNAME }}/streaming-service:latest ${{ secrets.DOCKER_USERNAME }}/streaming-service:latest
+            docker tag ${{ secrets.DOCKER_USERNAME }}/movies-service:latest ${{ secrets.DOCKER_USERNAME }}/movies-service:${{github.run_id}}
+            docker tag ${{ secrets.DOCKER_USERNAME }}/series-service:latest ${{ secrets.DOCKER_USERNAME }}/series-service:${{github.run_id}}
+            docker tag ${{ secrets.DOCKER_USERNAME }}/streaming-service:latest ${{ secrets.DOCKER_USERNAME }}/streaming-service:${{github.run_id}}
             docker push ${{ secrets.DOCKER_USERNAME }}/naming-server:${{github.run_id}}
             docker push ${{ secrets.DOCKER_USERNAME }}/api-gateway:${{github.run_id}}
             docker push ${{ secrets.DOCKER_USERNAME }}/naming-server:latest
