@@ -1,9 +1,11 @@
 package com.java.moviesservice.service;
 
 import com.java.moviesservice.dto.MoviesDto;
+import com.java.moviesservice.exception.message.MovieNotRegisteredException;
 import com.java.moviesservice.model.Movies;
 import com.java.moviesservice.repository.MoviesRepository;
 import java.util.List;
+import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -33,12 +35,12 @@ public class MoviesService implements MoviesInterface {
 
 	@Override
 	public Movies findById(Integer id) {
-		return moviesRepository.findById(id).get();
+		return findMovieById(id);
 	}
 
 	@Override
 	public Movies update(Integer id, MoviesDto moviesDto) {
-		Movies movie = moviesRepository.findById(id).get();
+		Movies movie = findMovieById(id);
 		movie.setTitle(moviesDto.getTitle());
 		movie.setSynopsis(moviesDto.getSynopsis());
 		movie.setDuration(moviesDto.getDuration());
@@ -51,6 +53,15 @@ public class MoviesService implements MoviesInterface {
 
 	@Override
 	public void delete(Integer id) {
+		findMovieById(id);
 		moviesRepository.deleteById(id);
+	}
+	
+	private Movies findMovieById(Integer id) {
+		Optional<Movies> validMovie = moviesRepository.findById(id);
+		if (validMovie.isEmpty()) {
+            throw new MovieNotRegisteredException();
+        }
+		return validMovie.get();
 	}
 }

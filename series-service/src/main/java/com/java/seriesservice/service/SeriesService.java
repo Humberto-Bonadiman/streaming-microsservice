@@ -1,9 +1,12 @@
 package com.java.seriesservice.service;
 
 import com.java.seriesservice.dto.SeriesDto;
+import com.java.seriesservice.exception.message.SerieNotRegisteredException;
 import com.java.seriesservice.model.Series;
 import com.java.seriesservice.repository.SeriesRepository;
 import java.util.List;
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -35,12 +38,12 @@ public class SeriesService implements SeriesInterface {
 
 	@Override
 	public Series findById(Integer id) {
-		return seriesRepository.findById(id).get();
+		return findSerieById(id);
 	}
 
 	@Override
 	public Series update(Integer id, SeriesDto seriesDto) {
-		Series serie = seriesRepository.findById(id).get();
+		Series serie = findSerieById(id);
 	    serie.setTitle(seriesDto.getTitle());
 	    serie.setSynopsis(seriesDto.getSynopsis());
 	    serie.setReleaseYear(seriesDto.getReleaseYear());
@@ -54,6 +57,15 @@ public class SeriesService implements SeriesInterface {
 
 	@Override
 	public void delete(Integer id) {
+		findSerieById(id);
 		seriesRepository.deleteById(id);
+	}
+	
+	private Series findSerieById(Integer id) {
+		Optional<Series> validSerie = seriesRepository.findById(id);
+		if (validSerie.isEmpty()) {
+			throw new SerieNotRegisteredException();
+		}
+		return validSerie.get();
 	}
 }
